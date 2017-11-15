@@ -12,11 +12,106 @@
       "version": {
         "major": 0,
         "minor": 0,
-        "level": "alpha",
+        "level": "rc",
         "patch": 0
       }
-    }
+    },
+    "software": {
+      "display": {
+        "title": "Auth",
+        "label": "Auth",
+        "description": "Kerberos for engines"
+      }
+    },
+    "timestamp": "2017-11-15T13:33:24+11:00"
   },
   "software": {
+    "base": {
+      "name": "auth",
+      "accepts": [
+        "ManagedEngine",
+        "ManagesService"
+      ],
+      "publisher_namespace": "EnginesSystem",
+      "type_path": "auth",
+      "service_handle_field": "kerberos",
+      "parent_image": "engines/servicebase",
+      "run_as_user": "auth",
+      "deployment_type": "worker",
+      "memory": {
+        "required": 96,
+        "recommended": 96
+      },
+      "persistent": true
+    },
+    "scripts": {
+      "start": {
+        "language": "sh",
+        "content": "#!/bin/sh\r\nPID_FILES=\"/var/run/krb5kdc.pid /var/run/krb5admin.pid\"\r\n\r\nPID_FILE=/var/run/krb5kdc.pid \r\nexport PID_FILE\r\n\r\nKILL_SCRIPT=/home/engines/scripts/signal/kill_kerberos.sh\r\nexport KILL_SCRIPT\r\n\r\n. /home/engines/functions/trap.sh\r\nservice_first_run_check\r\n\r\nsudo -n /home/engines/scripts/startup/_start.sh &\r\nwait\r\n\r\n\r\nshutdown_complete"
+      }
+    },
+    "system_packages": [
+      {
+        "package": "krb5-kdc"
+      },
+      {
+        "package": "krb5-admin-server"
+      }
+    ],
+    "service_configurations": [
+      {
+        "publisher_namespace": "EnginesSystem",
+        "type_path": "filesystem/local/filesystem",
+        "variables": {
+          "service_name": "krbkdc_etc",
+          "volume_src": "krb5kdc",
+          "engine_path": "/etc/krb5kdc",
+          "permissions": "rw",
+          "user": "0",
+          "group": "0"
+        }
+      },
+      {
+        "publisher_namespace": "EnginesSystem",
+        "type_path": "filesystem/local/filesystem",
+        "variables": {
+          "service_name": "krbkdc_lib",
+          "volume_src": "krb5",
+          "engine_path": " /var/krb5",
+          "permissions": "rw",
+          "user": "0",
+          "group": "0"
+        }
+      }
+    ],
+    "constants": [
+      {
+        "name": "backup_support",
+        "value": "true"
+      }
+    ],
+    "target_environment_variables": [
+      {
+        "variable_name": "kerberos",
+        "environment_variable_name": "K_KEY"
+      }
+    ],
+    "consumer_params": [
+      {
+        "name": "kerberos",
+        "value": "_Engines_Builder(engine_name)",
+        "mandatory": true,
+        "immutable": true,
+        "ask_at_build_time": true,
+        "input": {
+          "type": "string",
+          "title": "Key Name",
+          "validation": {
+            "pattern": "^[a-zA-Z]+$",
+            "message": "letters only"
+          }
+        }
+      }
+    ]
   }
 }
