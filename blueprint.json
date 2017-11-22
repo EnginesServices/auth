@@ -18,19 +18,19 @@
     },
     "software": {
       "display": {
-        "title": "Auth",
+        "title": "Authentication ticket service",
         "label": "Auth",
-        "description": "Kerberos for engines"
+        "description": "Kerberos implementation for engines"
       }
     },
-    "timestamp": "2017-11-15T13:33:24+11:00"
+    "timestamp": "2017-11-15T17:32:42+11:00"
   },
   "software": {
     "base": {
       "name": "auth",
       "accepts": [
         "ManagedEngine",
-        "ManagesService"
+        "ManagedService"
       ],
       "publisher_namespace": "EnginesSystem",
       "type_path": "auth",
