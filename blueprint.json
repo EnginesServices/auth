@@ -23,7 +23,7 @@
         "description": "Kerberos implementation for engines"
       }
     },
-    "timestamp": "2017-11-15T17:32:42+11:00"
+    "timestamp": "2017-11-23T14:50:11+11:00"
   },
   "software": {
     "base": {
@@ -110,6 +110,14 @@
             "pattern": "^[a-zA-Z]+$",
             "message": "letters only"
           }
+        }
+      },
+      {
+        "name": "owner",
+        "value": "_Engines_Builder(cont_userid)",
+        "mandatory": true,
+        "input": {
+          "type": "hidden"
         }
       }
     ]
