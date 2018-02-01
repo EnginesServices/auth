@@ -2,8 +2,8 @@
   "schema": {
     "type": "service_blueprint",
     "version": {
-      "major": 1,
-      "minor": 0
+      "major": 0,
+      "minor": 1
     },
     "origin": "Engines Developer Studio 0.2"
   },
@@ -23,25 +23,23 @@
         "description": "Kerberos implementation for engines"
       }
     },
-    "timestamp": "2017-11-24T09:06:47+11:00"
+    "timestamp": "2018-02-01T15:29:36+11:00"
   },
   "software": {
     "base": {
       "name": "auth",
-      "accepts": [
-        "ManagedEngine",
-        "ManagedService"
-      ],
       "publisher_namespace": "EnginesSystem",
       "type_path": "auth",
       "service_handle_field": "kerberos",
       "parent_image": "engines/servicebase",
-      "run_as_user": "auth",
       "deployment_type": "worker",
       "memory": {
         "required": 96,
         "recommended": 96
       },
+      "run_as_user": "auth"
+    },
+    "disposition": {
       "persistent": true
     },
     "scripts": {
@@ -96,6 +94,12 @@
         "environment_variable_name": "K_KEY"
       }
     ],
+    "consumers": {
+      "accepts": [
+        "ManagedEngine",
+        "ManagedService"
+      ]
+    },
     "consumer_params": [
       {
         "name": "kerberos",
@@ -114,7 +118,7 @@
       },
       {
         "name": "owner",
-        "value": "_Engines_Builder(cont_userid)",
+        "value": "_Engines_Builder(cont_user_id)",
         "mandatory": true,
         "immutable": true,
         "ask_at_build_time": true,
