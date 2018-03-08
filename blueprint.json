@@ -23,7 +23,7 @@
         "description": "Kerberos implementation for engines"
       }
     },
-    "timestamp": "2018-02-01T15:29:36+11:00"
+    "timestamp": "2018-03-08T12:59:33+11:00"
   },
   "software": {
     "base": {
@@ -125,6 +125,18 @@
         "input": {
           "type": "hidden"
         }
+      }
+    ],
+    "actionators": [
+      {
+        "name": "list_principles",
+        "label": "List principles",
+        "return_type": "json"
+      },
+      {
+        "name": "list_policies",
+        "label": "List policies",
+        "return_type": "json"
       }
     ]
   }
