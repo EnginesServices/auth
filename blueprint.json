@@ -23,7 +23,7 @@
         "description": "Kerberos implementation for engines"
       }
     },
-    "timestamp": "2018-09-27T10:53:15+10:00"
+    "timestamp": "2018-09-27T10:55:46+10:00"
   },
   "software": {
     "base": {
@@ -34,11 +34,11 @@
       "parent_image": "engines/servicebase",
       "deployment_type": "worker",
       "set_state": "running",
-      "default_stop_timeout": 0,
+      "default_stop_timeout": -2,
       "restart_policy": "always",
       "restart_attempts": 0,
       "memory": {
-        "required": 96,
+        "required": 86,
         "recommended": 96
       },
       "run_as_user": "auth",
