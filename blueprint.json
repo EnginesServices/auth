@@ -23,7 +23,7 @@
         "description": "Kerberos implementation for engines"
       }
     },
-    "timestamp": "2018-09-27T10:55:46+10:00"
+    "timestamp": "2018-09-27T10:56:42+10:00"
   },
   "software": {
     "base": {
@@ -140,7 +140,7 @@
         "ask_at_build_time": true,
         "input": {
           "type": "string",
-          "title": "Key Name",
+          "title": "Key name",
           "validation": {
             "pattern": "^[a-zA-Z]+$",
             "message": "letters only"
